@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hochschul-Chatbot</title>
+  <link rel="stylesheet" href="https://cdn.statically.io/gh/weberi/chatroom/master/dist/Chatroom.css" />
+  <link rel="stylesheet" href="https://cdn.statically.io/gh/weberi/chatroom/master/themes/theme1.css" />
+</head>
+<body>
+  <div class="chat-container"></div>
+  <script src="https://cdn.statically.io/gh/weberi/chatroom/master/dist/Chatroom.js"></script>
+  <script>
+    var chatroom = new window.Chatroom({
+      host: "https://DEIN-NODERED-ENDPUNKT",  // diesen Link ersetzen
+      title: "Hochschul-Assistent",
+      container: document.querySelector(".chat-container"),
+      welcomeMessage: "Hallo! Ich bin dein Hochschul-Assistent. Wie kann ich dir helfen?",
+      speechRecognition: "de-DE",
+      voiceLang: "de-DE"
+    });
+    chatroom.openChat();
+  </script>
+</body>
+</html>
+
