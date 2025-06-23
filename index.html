@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Chatbot – Hochschule Kempten</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f2f2f2;
+      padding: 2em;
+    }
+    #chat {
+      background: white;
+      border: 1px solid #ccc;
+      padding: 1em;
+      height: 300px;
+      overflow-y: auto;
+      margin-bottom: 1em;
+    }
+    #userInput {
+      width: 100%;
+      padding: 0.7em;
+      font-size: 1em;
+    }
+    .bot { color: darkblue; }
+    .user { color: darkgreen; }
+  </style>
+</head>
+<body>
+
+  <h2>💬 Chatbot – Hochschule Kempten</h2>
+  <div id="chat"></div>
+  <input type="text" id="userInput" placeholder="Stelle eine Frage..." autofocus />
+
+  <script>
+    const faq = {
+      "wann ist bewerbungsschluss": "Die Bewerbungsfrist für das Wintersemester endet am 15. Juli.",
+      "welche studiengänge gibt es": "An der Hochschule Kempten gibt es Studiengänge in Technik, Wirtschaft, Sozialwesen, Informatik und Gesundheit.",
+      "wo finde ich die mensa": "Die Mensa befindet sich im Gebäude A, direkt neben der Bibliothek.",
+      "wie erreiche ich das studierendensekretariat": "Du erreichst das Studierendensekretariat per E-Mail unter studierendensekretariat@hs-kempten.de oder telefonisch unter 0831 2523-300.",
+      "wann beginnt das wintersemester": "Das Wintersemester beginnt in der Regel am 1. Oktober.",
+      "gibt es wohnheime": "Ja, es gibt mehrere Studierendenwohnheime in Kempten, u.a. vom Studentenwerk Augsburg.",
+      "wo ist die bibliothek": "Die Bibliothek befindet sich im Gebäude D der Hochschule."
+    };
+
+    const chat = document.getElementById('chat');
+    const input = document.getElementById('userInput');
+
+    input.addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        const userText = input.value.toLowerCase();
+        chat.innerHTML += `<p class="user"><strong>Du:</strong> ${userText}</p>`;
+        let found = false;
+        for (let key in faq) {
+          if (userText.includes(key)) {
+            chat.innerHTML += `<p class="bot"><strong>Bot:</strong> ${faq[key]}</p>`;
+            found = true;
+            break;
+          }
+        }
+        if (!found) {
+          chat.innerHTML += `<p class="bot"><strong>Bot:</strong> Tut mir leid, dazu habe ich keine Informationen. Frag mich etwas zur Hochschule!</p>`;
+        }
+        chat.scrollTop = chat.scrollHeight;
+        input.value = '';
+      }
+    });
+  </script>
+
+</body>
+</html>
